@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="images/SmallSwords.png?v=2" type="image/png"/>
+    <link rel="apple-touch-icon" href="images/BigSwords.png?v=2" type="image/png"/>
+    <meta charset="UTF-8"/>
+    <meta name="description"
+          content="Welcome to the unofficial Polytopia battle calculator! Try out a variety of combat situations and see what the end result is going to be."/>
+    <meta name="author" content="FrothFrenzy"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta property="og:title" content="Polytopia Battle Calculator"/>
+    <meta property="og:description"
+          content="Welcome to the unofficial Polytopia battle calculator! Try out a variety of combat situations and see what the end result is going to be."/>
+    <meta property="og:image" content="http://polytopiacalculator.freevar.com/BigSwords.png"/>
+    <title>Polytopia Battle Calculator</title>
+    <link href="main.css" rel="stylesheet"/>
+    <script src="main.js"></script>
+</head>
+<body>
+<div id="faq">
+    <h1>Frequently Asked Questions <small><a href="./">&lt;&lt;&lt; Back to the calculator!</a></small></h1>
+
+    <h2>So how does the calculator work?</h2>
+    <p>The calculator uses the same code posted by the developer on the game wikia forums some time ago. You can find a
+        link to this thread on the bottom of this FAQ. Here is the simplified code:</p>
+    <pre>
+        accelerator = 4.5
+        attackForce = attacker.attack * (attacker.health / attacker.maxHealth)
+        defenseForce = defender.defense * (defender.health / defender.maxHealth)
+        totalDamage = attackForce + defenseForce
+        attackResult = round((attackForce / totalDamage) * attacker.attack * accelerator)
+        defenseResult = round((defenseForce / totalDamage) * defender.defense * accelerator)
+    </pre>
+    <p>As for the actual usage - you simply input all of the fields, click the Calculate! button, and your battle result
+        will pop up at the bottom. All of the fields are required because every variable affects the result. You can use
+        drop-down unit templates to fill the fields quicker, although these can also be useful if you don't remember the
+        unit stats. Additional details such as unit veterancy and variable ship HP will appear next to the template box
+        once you have selected a relevant unit.</p>
+    <p>Defender's current HP is automatically updated if the defender
+        survives, so you can keep pressing Calculate! repeatedly until it is destroyed. This is useful for quickly
+        calculating how many units of the same power are needed to take down a stronger unit, and you don't need to
+        manually change the defender's current HP every time you want to perform an attack with a different
+        unit.</p>
+    <p>If checkboxes appear too small on your screen, you can instead click or tap on the text
+        pertaining to the checkbox to activate it. This applies both to veterancy status and defense/wall bonus
+        checkboxes.</p>
+    <p>Also note that you can access a history of all the recent battles you performed in the
+        current session. Tap or click three times on any text that appears below Result: to activate the history.
+        Likewise, you can turn it off by tapping or clicking three times in that same area. The history showcases 10
+        entries by default. If for some reason you would like to keep a bigger (or smaller) history for the current
+        session, fill all the fields so there are no invalid values, set the attack value to 123, set the defense value
+        to the number of entries you want to keep and then press the Calculate! button. A message will appear as a
+        confirmation. All entries are formatted as Attacker (stats) - Defender (stats|D/W), where stats are shown in the
+        same order as they appear on the calculator, and D/W representing the defense/wall bonus for the defender.</p>
+    <h2>Where does the defense bonus come in?</h2>
+    <p>The defenceForce variable is increased by a factor of 1.5 if the defender is on a tile that provides a standard
+        defense bonus (see below). If the defender is behind a wall, it's increased by a factor of 4. This corresponds
+        to a 50% or 300% increase in defense, respectively. Because only the defenceForce variable is affected by this,
+        you won't get the correct retaliation result if you were to apply the same factor to the defense value of the
+        unit instead.</p>
+    <h2>Which tiles provide the standard defense bonus?</h2>
+    <p>Non-walled cities and defensive terrain for which you researched the relevant technology - Aquatism for
+        water,
+        Archery for forests and Meditation for mountains. If a player has any of these technologies, their units
+        will
+        have a shield appear around their HP when they are on tiles that provide the bonus. The shield will also
+        appear
+        on units that are in friendly cities, with a few exceptions - Aquarion amphibians, crabs and tridentions
+        never
+        receive the defense bonus from cities, even if they are walled.</p>
+    <h2>My unit is attacking from a tile that provides a defense bonus. Why is there no option that accounts for
+        this?</h2>
+    <p>Contrary to popular belief, this has no effect on the result. You forfeit the bonus entirely. Your unit will
+        receive full damage when the enemy unit retaliates.</p>
+    <h2>How does the retaliation damage work? Why does the calculator sometimes report that the defender was
+        destroyed
+        but no word on what happened to the attacker?</h2>
+    <p>The unit's defense value is used in place of its attack value to calculate the return damage. This is why
+        some
+        units deal significantly less damage when retaliating, while the defender unit and units with defense
+        bonuses
+        deal more. Because all of the modifiers are already applied before dealing damage takes place, the
+        defender's HP
+        loss doesn't affect its retaliation result. Instead, it deals damage based on HP it had before combat began.
+        However, if the attack outright destroys the defender, there is no retaliation. The attacker is unphased, so
+        there's nothing for the calculator to report.</p>
+    <h2>I'm attacking an enemy with a ranged unit, but that enemy doesn't hit back. The calculator says I receive
+        damage anyway. Does this affect my damage result?</h2>
+    <p>No. The calculator has no way of knowing if you're attacking a unit next to you, away from you, or a ranged
+        unit
+        that doesn't retaliate because you're in your enemy's fog of war. Simply disregard the retaliation damage -
+        the
+        damage you deal is not affected in any of these cases.</p>
+    <h2>Where can I see all the unit stats?</h2>
+    <p>If you use drop-down unit templates, the calculator will automatically fill all the stats for the selected
+        unit.
+        For more info, you should read the unit page on the game's wikia site. You can find the link to this page at
+        the
+        bottom of this FAQ.</p>
+    <h2>How does the fire dragon's splash damage work?</h2>
+    <p>It is calculated in the same way as a regular attack. However, an additional line of code is added at the
+        end:</p>
+    <pre>defender.health = defender.health - floor(attackResult / 2);</pre>
+    <p>This means that the unit receives half the damage it would normally receive if it was the main target,
+        rounded
+        down. So e.g. if the fire dragon would deal 11 damage to a unit by attacking it directly, that same unit
+        would
+        receive 5 damage (11/2=5.5=5) if it was splashed instead. Since nothing is altered in the original formula,
+        the
+        unit also benefits from its defense bonus, if any. It is also worth noting that only the fire dragon's main
+        target can retaliate, provided it survives the initial attack. </p>
+    <p> Both the main attack and splash damage results are provided to you simultaneously, calculated separately for
+        the
+        same defending unit. You either take one result or the other, depending on your follow-up. This is
+        convenient if
+        you're testing for damage in a group of units, so you can quickly get an idea which unit would be the most
+        optimal to choose for the dragon's main attack. The calculator assumes the main attack will be the
+        follow-up,
+        and deducts that result from the defender's current HP.</p>
+    <h2>Can I use the calculator offline?</h2>
+    <p>Yes you can. Follow these instructions:</p>
+    <p><i>PC</i>: Go to the calculator website, right-click on any empty space and press Save as... or Save Page
+        As...
+        to get the index.html file. Alternatively, you can download the file from my <a
+                href="https://drive.google.com/open?id=0B7HGBGCiKHGkSUExdEs3Q2J1UG8" target="_blank">Google
+            Drive</a> or
+        <a href="https://github.com/frothfrenzy/polytopiacalculator" target="_blank">GitHub</a>. After you
+        downloaded
+        it, simply drag the .html file into your browser to run the calculator.</p>
+    <p><i>iOS</i>: Repeat the PC process. Download an app called HTML Viewer Q by Spica. Connect your device to
+        iTunes.
+        In iTunes, select your device and go to File Sharing. Select HTML Viewer, press Add File and find the .html
+        file
+        you downloaded on your PC. Disconnect your device, run HTML Viewer and press on a book-like icon at the
+        bottom
+        right. Switch from Bookmarks to Files and select the downloaded .html file.</p>
+    <p><i>Android</i>: Either repeat the PC process, or download the Google Drive app to fetch the .html file from
+        my
+        <a href="https://drive.google.com/open?id=0B7HGBGCiKHGkSUExdEs3Q2J1UG8" target="_blank">Google Drive</a>. If
+        you
+        used the PC, connect your device and transfer the .html file to it. If you used Google Drive, the file
+        should be
+        in your Downloads folder. Download the HTML Viewer app by Yogev Haham and run it. Press the paper-like icon
+        at
+        the upper right. Find and select the downloaded .html file, then press the browser view icon in the upper
+        right.
+    </p>
+    <h2>Who are you?</h2>
+    <p>I'm a big fan of the game and I've been playing it since early 2017. I have a tendency to learn every game I
+        play
+        in great detail as I'm hoping to pursue game design at some point. For about a year I was active over at the
+        game's Discord server, which you should definitely join if you want to improve your game and meet other
+        players.
+        An invite to the server is posted at the bottom of this FAQ. I have since left Discord so I can focus on
+        other
+        things.</p>
+    <h2>How can I contact you?</h2>
+    <p>You can contact me via <a href="mailto:frothdiscord@gmail.com" target="_top">e-mail</a>. By all means contact
+        me
+        if you have any suggestions or bug reports regarding the calculator.</p>
+    <h2>What are Discord challenges?</h2>
+    <p>These are player-made, self-imposed limitations that alter the gameplay in some fundamental way. You can find
+        the
+        challenge list at the bottom of this FAQ. To be eligible for the scoreboard, you have to join Discord and
+        post
+        your results in the appropriate channel.</p>
+    <h2>How can I become a better player?</h2>
+    <p>Read through strategies on the game wikia, Reddit and Discord. Watch videos of experienced players on
+        Youtube.
+        Ask the player-base for help. Most important of all - play a lot, maximize your income and try to learn the
+        mechanics behind the game. It will come in time. The links to help you with this are provided below.</p>
+    <h2>Links:</h2>
+    <ul>
+        <li>
+            <a href="https://discord.gg/YTFTuAq?" target="_blank">Discord</a>
+        <li>
+            <a href="http://polytopia.wikia.com/wiki/The_Battle_of_Polytopia_Wikia" target="_blank">Wikia</a>
+        <li>
+            <a href="https://www.reddit.com/r/Polytopia/" target="_blank">Reddit</a>
+        <li>
+            <a href="http://www.midjiwan.com/polytopia.html" target="_blank">Official Game Website</a>
+        <li>
+            <a href="https://www.facebook.com/polytopia/" target="_blank">Official Game Facebook</a>
+        <li>
+            <a href="https://twitter.com/midjiwan?lang=en" target="_blank">Midjiwan's Twitter</a>
+        <li>
+            <a href="https://www.instagram.com/midjiwan/" target="_blank">Midjiwan's Instagram</a>
+        <li>
+            <a href="https://www.youtube.com/channel/UCtBjQ-1WqlHrAjSaJUpKb0w" target="_blank">Midjiwan's Youtube
+                Channel</a>
+        <li>
+            <a href="http://polytopia.wikia.com/wiki/Thread:920" target="_blank">Midjiwan's Wikia Post</a>
+        <li>
+            <a href="https://polytopia.wikia.com/wiki/Units" target="_blank">Wikia Unit Page</a>
+        <li>
+            <a href="https://drive.google.com/open?id=0B7HGBGCiKHGkSFN2clluYnM0QlU" target="_blank">My
+                Screenshots</a>
+        <li>
+            <a href="https://www.youtube.com/playlist?list=PLQqaZ-kEj4Exd6EMDYTadaWbsFMoROwzw" target="_blank">My
+                Videos</a>
+        <li>
+            <a href="https://www.youtube.com/playlist?list=PLfTvLAe72_3j5OHnUiyc1Cwo3Z6uiFmeC" target="_blank">Tupp's
+                Videos</a>
+        <li>
+            <a href="https://www.youtube.com/channel/UCjwJEqv8LZOV6S12wAybURA" target="_blank">Dued03's Videos</a>
+        <li>
+            <a href="https://www.youtube.com/channel/UCEmKzVafcBQauZylIoomojw/videos?disable_polymer=1"
+               target="_blank">Ze
+                Biggest Potato's Videos</a>
+        <li>
+            <a href="https://www.reddit.com/r/Polytopia/comments/6cjc4j/guide_quick_and_simple_guide_to_get_3_start_in/"
+               target="_blank">Domination Guide by Airgibbo</a>
+        <li>
+            <a href="https://www.reddit.com/r/Polytopia/comments/6fslca/bardur_100k_points_strategy_guide/"
+               target="_blank">Perfection
+                Guide by Tupp</a>
+        <li>
+            <a href="https://www.reddit.com/r/Polytopia/comments/5qbppw/my_guide_to_high_scores_in_perfection_mode_based/"
+               target="_blank">Perfection Guide by Illinois_Jones</a>
+        <li>
+            <a href="https://www.reddit.com/r/Polytopia/comments/85asn3/advanced_multiplayer_tribe_by_tribe_guide/"
+               target="_blank">Multiplayer Guide by Will2Brown</a>
+        <li>
+            <a href="https://drive.google.com/open?id=10vODoFZk-i670i56je_6G-XyZK7qHHEqp7xA-nYW4X8" target="_blank">Challenge
+                List</a>
+        <li>
+            <a href="https://github.com/frothfrenzy/polytopiacalculator/blob/master/Changelog.md"
+               target="_blank">Changelog</a>
+    </ul>
+
+    <h1><small><a href="./">&lt;&lt;&lt; Back to the calculator!</a></small></h1>
+</div>
+</body>
+</html>

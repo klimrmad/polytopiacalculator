@@ -1,0 +1,32 @@
+h2 {
+    display: inline;
+}
+
+p {
+    max-height: 999999px;
+    font-size: 17px;
+}
+
+p.i {
+    font-style: italic;
+}
+
+input {
+    font-size: 16px;
+}
+
+select, button {
+    font-size: 15px;
+}
+
+pre {
+    white-space: pre-line;
+}
+
+#main, h1 {
+    text-align: center;
+}
+
+h1 small {
+    display: block;
+}
