@@ -30,3 +30,186 @@ pre {
 h1 small {
     display: block;
 }
+
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+[type=radio] + .pers {
+    cursor: pointer;
+    outline: 1px dashed #000;
+}
+
+[type=radio]:checked + .pers {
+    outline: 2px solid #f00;
+}
+
+.pers {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin: 2px 0;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.pers:before {
+    content: "Attacker";
+    position: relative;
+    top: 35px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 2px;
+    padding: 0 2px;
+    font-size: 11px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.Warrior:before {
+    content: "Warrior";
+}
+
+.Rider:before {
+    content: "Rider";
+}
+
+.Defender:before {
+    content: "Defender";
+}
+
+.Swordsman:before {
+    content: "Swordsman";
+}
+
+.Archer:before {
+    content: "Archer";
+}
+
+.Catapult:before {
+    content: "Catapult";
+}
+
+.Knight:before {
+    content: "Knight";
+}
+
+.Giant:before {
+    content: "Giant";
+}
+
+.Boat:before {
+    content: "Boat";
+}
+
+.Ship:before {
+    content: "Ship";
+}
+
+.Battleship:before {
+    content: "Battleship";
+}
+
+.Amphibian:before {
+    content: "Amphibian";
+}
+
+.Crab:before {
+    content: "Crab";
+}
+
+.Tridention:before {
+    content: "Tridention";
+}
+
+.Polytaur:before {
+    content: "Polytaur";
+}
+
+.Navalon:before {
+    content: "Navalon";
+}
+
+.BabyDragon:before {
+    content: "Baby Dragon";
+}
+
+.FireDragon:before {
+    content: "Fire Dragon";
+}
+
+.pers.Warrior {
+    background-image: url("images/Attackers/Warrior.png");
+}
+
+.pers.Rider {
+    background-image: url("images/Attackers/Rider.png");
+}
+
+.pers.Defender {
+    background-image: url("images/Attackers/Defender.png");
+}
+
+.pers.Swordsman {
+    background-image: url("images/Attackers/Swordsman.png");
+}
+
+.pers.Archer {
+    background-image: url("images/Attackers/Archer.png");
+}
+
+.pers.Catapult {
+    background-image: url("images/Attackers/Catapult.png");
+}
+
+.pers.Knight {
+    background-image: url("images/Attackers/Knight.png");
+}
+
+.pers.Giant {
+    background-image: url("images/Attackers/Giant.png");
+}
+
+.pers.Boat {
+    background-image: url("images/Attackers/Boat.png");
+}
+
+.pers.Ship {
+    background-image: url("images/Attackers/Ship.png");
+}
+
+.pers.Battleship {
+    background-image: url("images/Attackers/Battleship.png");
+}
+
+.pers.Amphibian {
+    background-image: url("images/Attackers/Amphibian.png");
+}
+
+.pers.Crab {
+    background-image: url("images/Attackers/Crab.png");
+}
+
+.pers.Tridention {
+    background-image: url("images/Attackers/Tridention.png");
+}
+
+.pers.Polytaur {
+    background-image: url("images/Attackers/Polytaur.png");
+}
+
+.pers.Navalon {
+    background-image: url("images/Attackers/Navalon.png");
+}
+
+.pers.BabyDragon {
+    background-image: url("images/Attackers/BabyDragon.png");
+}
+
+.pers.FireDragon {
+    background-image: url("images/Attackers/FireDragon.png");
+}

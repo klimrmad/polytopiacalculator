@@ -23,47 +23,89 @@
 </head>
 <body>
 <div id="main">
-    <h1>Polytopia Battle Calculator <small>by <a href="mailto:frothdiscord@gmail.com" target="_top">FrothFrenzy</a></small></h1>
+    <h1>Polytopia Battle Calculator
+        <small>by <a href="mailto:frothdiscord@gmail.com" target="_top">FrothFrenzy</a></small>
+    </h1>
 
     <form id="values" onsubmit="return false">
-        <p><select id="selectattacker" onchange="attackerfill()" tabindex="-1">
-            <option value="Select Attacker">Select Attacker
-            <option value="Warrior">Warrior
-            <option value="Rider">Rider
-            <option value="Defender">Defender
-            <option value="Swordsman">Swordsman
-            <option value="Archer">Archer
-            <option value="Catapult">Catapult
-            <option value="Knight">Knight
-            <option value="Giant">Giant
-            <option value="Boat">Boat
-            <option value="Ship">Ship
-            <option value="Battleship">Battleship
-            <option value="Amphibian">Amphibian
-            <option value="Crab">Crab
-            <option value="Tridention">Tridention
-            <option value="Polytaur">Polytaur
-            <option value="Navalon">Navalon
-            <option value="Baby Dragon">Baby Dragon
-            <option value="Fire Dragon">Fire Dragon
-        </select>
+        <div class="attacker_selector">
+            <!--<select id="selectattacker" onchange="attackerfill()" tabindex="-1">-->
+            <label>
+                <input type="radio" name="attacker" value="Warrior"><span class="pers Warrior"></span>
+            </label>
+            <label>
+                <input type="radio" name="attacker" value="Rider"><span class="pers Rider"></span>
+            </label>
+            <label>
+                <input type="radio" name="attacker" value="Defender"><span class="pers Defender"></span>
+            </label>
+            <label>
+                <input type="radio" name="attacker" value="Swordsman"><span class="pers Swordsman"></span>
+            </label>
+            <label>
+                <input type="radio" name="attacker" value="Archer"><span class="pers Archer"></span>
+            </label>
+            <label>
+                <input type="radio" name="attacker" value="Catapult"><span class="pers Catapult"></span>
+            </label>
+            <label>
+                <input type="radio" name="attacker" value="Knight"><span class="pers Knight"></span>
+            </label>
+            <label>
+                <input type="radio" name="attacker" value="Giant"><span class="pers Giant"></span>
+            </label>
+            <label>
+                <input type="radio" name="attacker" value="Boat"><span class="pers Boat"></span>
+            </label>
+            <label>
+                <input type="radio" name="attacker" value="Ship"><span class="pers Ship"></span>
+            </label>
+            <label>
+                <input type="radio" name="attacker" value="Battleship"><span class="pers Battleship"></span>
+            </label>
+            <label>
+                <input type="radio" name="attacker" value="Amphibian"><span class="pers Amphibian"></span>
+            </label>
+            <label>
+                <input type="radio" name="attacker" value="Crab"><span class="pers Crab"></span>
+            </label>
+            <label>
+                <input type="radio" name="attacker" value="Tridention"><span class="pers Tridention"></span>
+            </label>
+            <label>
+                <input type="radio" name="attacker" value="Polytaur"><span class="pers Polytaur"></span>
+            </label>
+            <label>
+                <input type="radio" name="attacker" value="Navalon"><span class="pers Navalon"></span>
+            </label>
+            <label>
+                <input type="radio" name="attacker" value="BabyDragon"><span class="pers BabyDragon"></span>
+            </label>
+            <label>
+                <input type="radio" name="attacker" value="FireDragon"><span class="pers FireDragon"></span>
+            </label>
 
-            <span id="attveterancy" style="display:none"><span onclick="attvettest()">Veteran? </span><input
-                    type="checkbox" id="attvetbox" onclick="attackerveteran()"></span>
+
+            <span id="attveterancy" style="display:none">
+                <span onclick="attvettest()">Veteran? </span>
+                <input type="checkbox" id="attvetbox" onclick="attackerveteran()">
+            </span>
 
             <select id="attshiphp" onchange="attackershiphp()" style="display:none" tabindex="-3">
                 <option value="HP 10">Max HP 10
                 <option value="HP 15">Max HP 15
                 <option value="HP 20">Max HP 20
                 <option value="HP 40">Max HP 40
-            </select></p>
+            </select>
 
-        <p>Attacker attack value:</p>
-        <input type="number" id="attack" min="0" step="0.5" required tabindex="1">
-        <p>Attacker current HP:</p>
-        <input type="number" id="attackhp" min="1" required tabindex="2">
-        <p>Attacker max HP:</p>
-        <input type="number" id="attackmaxhp" min="10" required tabindex="3">
+            <p>Attacker attack value:</p>
+            <input type="number" id="attack" min="0" step="0.5" required tabindex="1">
+            <p>Attacker current HP:</p>
+            <input type="number" id="attackhp" min="1" required tabindex="2">
+            <p>Attacker max HP:</p>
+            <input type="number" id="attackmaxhp" min="10" required tabindex="3">
+
+        </div>
 
         <p><select id="selectdefender" onchange="defenderfill()" tabindex="-4">
             <option value="Select Defender">Select Defender
